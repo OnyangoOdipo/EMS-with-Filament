@@ -1,136 +1,138 @@
-# Employee Management System Project
+# Employee Management System (EMS) WITH FILAMENT
 
-The Employee Management System is a comprehensive web application built using PHP Laravel, designed to streamline and simplify employee management for organizations. This system provides a range of features for both administrators and employees, making it easier to manage employee data, attendance, leave, payroll, and more.
+## Overview
+
+The **Employee Management System (EMS)** is a comprehensive Laravel based application designed to automate and streamline various aspects of employee management within an organization. The system is tailored to meet specific client requirements, including the automation of employee data management, attendance tracking, leave request processing, and performance evaluation. This project aims to reduce manual errors, improve data accuracy, and enhance overall efficiency in managing human resources.
 
 ## Features
 
-### Admin Side Features:
+### 1. **Employee Data Management**
+   - **Overview:** This module allows for the efficient capture and maintenance of employee information, including personal details, job roles, and contact information.
+   - **Key Functionalities:**
+     - Add, edit, and delete employee records.
+     - Auto-fill employee details from existing user data.
+     - Integration with the users table to manage employee roles and permissions.
 
-#### 1. User Management
+### 2. **Attendance Tracking**
+   - **Overview:** This module records employee clock-in/out times, calculates work hours, and generates attendance reports.
+   - **Key Functionalities:**
+     - Real-time recording of attendance data.
+     - Calculation of total work hours per day.
+     - Generation of daily, weekly, and monthly attendance reports.
+     - Display of attendance statistics on the dashboard.
 
--   Admin can create and manage employee accounts.
--   Secure login system for administrators with username and password authentication.
--   Assign roles and permissions to employees for effective access control.
+### 3. **Leave Request Processing**
+   - **Overview:** This feature allows employees to request leaves online, automates approval workflows, and keeps track of leave balances.
+   - **Key Functionalities:**
+     - Employee-initiated leave requests with detailed information.
+     - Admin panel for approving or declining leave requests.
+     - Tracking of leave balances and history for each employee.
+     - Notifications for leave request status changes.
 
-#### 2. Employee Profile Management
+### 4. **Performance Evaluation**
+   - **Overview:** This module facilitates the evaluation of employee performance, enabling managers to provide feedback and track progress.
+   - **Key Functionalities:**
+     - Creation of performance evaluation forms.
+     - Recording and tracking of employee performance metrics.
+     - Historical view of performance evaluations.
+     - Integration with employee records for a comprehensive performance overview.
 
--   Create and update detailed employee profiles.
--   Store and manage personal and professional information for each employee.
+## Project Structure
 
-#### 3. Leave and Attendance Management
+The project is organized into several key sections, each responsible for different aspects of the EMS:
 
--   Approve or deny leave requests from employees.
--   Monitor attendance, track late arrivals, and manage absences efficiently.
+- **Models:** Represents the core entities like User, Employee, Attendance, Leave, etc.
+- **Controllers:** Handles the logic for each feature, such as UserController, AttendanceController, LeaveController, etc.
+- **Migrations:** Defines the database schema for all tables, ensuring consistency across environments.
+- **Views:** Contains all the Blade templates for the application's front-end, including custom login, registration, and dashboard pages.
+- **Routes:** Defines all the routes for web access, ensuring proper routing of requests to the appropriate controllers.
 
-#### 4. View Work Details
+## Installation Guide
 
--   Create a dashboard section that enables administrators to access work details for each employee.
--   Search for employees, view their work schedules, projects, and tasks, and update this information as needed.
+To get the EMS up and running on your local machine, follow these detailed steps:
 
-#### 5. Manage Tours
+### Prerequisites
 
--   Implement a section for managing employee travel or tours.
--   Admins can initiate tour requests on behalf of employees or review and approve employee-initiated tour requests.
+- PHP 8.2 or higher
+- Composer
+- MySQL or any other compatible database
 
-#### 6. Payroll Management
+### Step 1: Clone the Repository
 
--   Create a payroll section to handle salary processing and related tasks.
--   Input and calculate employee salaries, deductions, and taxes easily.
+First, clone the repository to your local machine:
 
-### Employee Side Features:
+```bash
+git clone https://github.com/OnyangoOdipo/EMS-with-Filament.git
+cd EMS-with-Filament
+```
 
-#### 1. Employee Self-Service
+### Step 2: Install Dependencies
 
--   Allow employees to access and update their personal information.
--   Secure login system for employees with username and password authentication.
+Install the necessary PHP dependencies using Composer:
 
-#### 2. Time Tracking
+```bash
+composer install
+```
 
--   Enable employees to log their start and end times for accurate timekeeping.
--   View work schedules and timesheets to stay on top of their work hours.
+### Step 3: Set Up the Environment
 
-#### 3. Payroll Information
+Copy the `.env.example` file to create your `.env` file:
 
--   Employees can easily access and view their total hours of work.
--   Check their salary history and deductions for transparency.
+```bash
+copy .env.example .env
+```
 
-#### 4. Leave Requests
+Open the `.env` file and configure your database settings:
 
--   Allow employees to submit leave requests and track their status.
--   View approved and pending leave requests for effective leave management.
+```plaintext
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your database name
+DB_USERNAME=your username
+DB_PASSWORD=your password
+```
 
-#### 5. View Task Details
+### Step 4: Generate Application Key
 
--   Provide employees with a dashboard to view their work details and tasks.
--   Allow employees to submit their tasks for review.
+Generate a new application key:
 
-#### 6. Tour Requests
+```bash
+php artisan key:generate
+```
 
--   Enable employees to submit travel and tour requests directly from their panel.
--   Specify destination, travel dates, and purposes for the tour.
--   Track the status of their travel and tour requests.
+### Step 5: Run Migrations and Seeders
 
-## Getting Started
+Run the database migrations to create the necessary tables:
 
-Follow the steps below to set up and run the Employee Management System on your server:
+```bash
+php artisan migrate
+```
 
-1.  **Prerequisites**: Ensure that you have PHP, Laravel, and a database system (e.g., MySQL) installed on your server.
+### Step 6: Seed the Database
 
-2.  **Clone the Repository**: Clone this repository to your server or local development environment.
+```bash
+php artisan db:seed
+```
 
-    ```bash
-    https://github.com/akikhossain/Employee-Management-System.git
+### Step 7: Serve the Application
 
-    ```
+Finally, start the Laravel development server:
 
-3.  **Configuration**: Configure your database connection settings in the .env file.
+```bash
+php artisan serve
+```
 
-4.  **Install Dependencies**: Install the required PHP dependencies using Composer.
+The application should now be accessible at `http://localhost:8000`.
 
-5.  **Database Migrations**: Run the database migrations to create the necessary tables.
+### Step 8: Access the Application
 
-    ```bash
-      php artisan migrate
+- **Admin Login:** You can log in to the admin dashboard using the credentials specified during the seeding process or register a new admin user if needed.
+- To access the admin dashaboard use the following url `http://localhost:8000/admin`
 
-    ```
+- **Employee Management:** Manage employees, track attendance, process leave requests, and perform evaluations through the intuitive admin interface.
+- To access the employees dashboard use the following url `http://localhost:8000/login`
 
-6.  **Seed Data (Optional)**: If you'd like to populate the system with sample data, run the seeders.
+## Conclusion
 
-    ```bash
-
-      php artisan db:seed
-
-    ```
-
-7.  **Start the Application**: Start the Laravel development server.
-
-    ```bash
-     php artisan serve
-
-    ```
-
-8.  **Access the Application**: Open your web browser and access the application at http://localhost:8000 (or the URL provided by the Laravel server).
-
-# Usage
-
-**Admin Panel**: Log in with your admin credentials to access the full suite of admin features.
-
-**Employee Panel**: Employees can log in using their credentials to access their personal data, time tracking, leave requests, payroll information, task details, and tour requests.
-
-# Contributing
-
-If you would like to contribute to this project, please follow our contribution guidelines.
-
-# License
-
-This project is licensed under the MIT License.
-
-# Support
-
-If you encounter any issues or have questions, please contact our support team at mr.akikhossain@gmail.com
-
-# Acknowledgments
-
-We would like to express our gratitude to the Laravel community for providing the robust framework that made this project possible.
-
-Thank you for considering the Employee Management System for your organization. We hope this system enhances your employee management processes and makes your workplace more efficient and organized.
+The EMS project is designed to meet the specific needs of modern organizations in managing their workforce efficiently. With its modular design, robust features, and user-friendly interface, it provides a comprehensive solution for automating key HR processes. Whether you need to manage employee data, track attendance, process leaves, or evaluate performance, the EMS system has you covered.
